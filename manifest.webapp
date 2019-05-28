@@ -10,7 +10,7 @@
   },
   "appType": "APP",
   "name": "DHIS2 event reports app",
-  "version": "33.0.1",
+  "version": "33.0.2",
   "description": "Event reports app",
   "developer": {
     "name": "DHIS2 visualization team"
@@ -18,5 +18,5 @@
   "icons": {
     "48": "icon.png"
   },
-  "manifest_generated_at": "Tue May 28 2019 13:04:30 GMT+0000 (UTC)"
+  "manifest_generated_at": "Tue May 28 2019 13:06:45 GMT+0000 (UTC)"
 }
