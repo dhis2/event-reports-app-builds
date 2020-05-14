@@ -1,0 +1,22 @@
+{
+  "launch_path": "index.html",
+  "default_locale": "en",
+  "activities": {
+    "dhis": {
+      "href": "..",
+      "auth": "system:System123",
+      "devHref": "http://localhost:8080"
+    }
+  },
+  "appType": "APP",
+  "name": "DHIS2 event reports app",
+  "version": "30.0.29",
+  "description": "Event reports app",
+  "developer": {
+    "name": "DHIS2 visualization team"
+  },
+  "icons": {
+    "48": "icon.png"
+  },
+  "manifest_generated_at": "Thu May 14 2020 22:21:21 GMT+0000 (UTC)"
+}
