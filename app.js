@@ -30426,7 +30426,7 @@
 	
 	            if (stageId) {
 	                stage.setValue(stageId);
-	                onStageSelect(stageId, layout);
+	                onStageSelect(stageId, layout, _program);
 	            }
 	
 	            // init timeField, depending on programType
@@ -30477,7 +30477,7 @@
 	        }
 	    };
 	
-	    var onStageSelect = function onStageSelect(stageId, layout) {
+	    var onStageSelect = function onStageSelect(stageId, layout, _program) {
 	        if (!layout) {
 	            // event/enrollment
 	            updateDataElementSelection();
@@ -30491,7 +30491,7 @@
 	        dataElementSearch.enable();
 	        dataElementSearch.hideFilter();
 	
-	        loadDataElements(stageId, layout);
+	        loadDataElements(stageId, layout, _program);
 	    };
 	
 	    var stage = Ext.create('Ext.form.field.ComboBox', {
@@ -30535,10 +30535,7 @@
 	        }))));
 	    };
 	
-	    var loadDataElements = function loadDataElements(stageId, layout) {
-	        var programId = layout ? layout.program.id : program.getValue() || null;
-	        var _program = programStorage[programId];
-	
+	    var loadDataElements = function loadDataElements(stageId, layout, _program) {
 	        var dataItems = (0, _arrayClean2.default)([].concat(_program.attributes || [], _program.programIndicators || []));
 	
 	        var stageIds = getStageIds(stageId, layout);
@@ -30555,7 +30552,7 @@
 	                    return !(0, _arrayContains2.default)(['pe', 'ou'].concat(_toConsumableArray(appManager.getDimensionIds())), dataDim.dimension);
 	                });
 	
-	                selectDataElements(dataDimensionIds, layout);
+	                selectDataElements(dataDimensionIds, layout, _program);
 	            }
 	
 	            uiManager.get('aggregateLayoutWindow').orgUnitField.resetDataElements(dataElements);
@@ -30923,7 +30920,7 @@
 	        return ux;
 	    };
 	
-	    var selectDataElements = function selectDataElements(items, layout) {
+	    var selectDataElements = function selectDataElements(items, layout, _program) {
 	        var dataElements = [],
 	            allElements = [],
 	            aggWindow = uiManager.get('aggregateLayoutWindow'),
@@ -30971,7 +30968,11 @@
 	                    }));
 	                }
 	            } else if ((0, _isObject2.default)(item)) {
-	                var itemConfig = _extends({}, item.data, item.programStage && getDataElementFromStorage(item.programStage.id, item.dimension || item.id));
+	                var itemConfig = _extends({}, item.data, item.programStage && getDataElementFromStorage(item.programStage.id, item.dimension || item.id), (_program.attributes || []).find(function (attr) {
+	                    return attr.id === item.dimension || attr.id === item.id;
+	                }), (_program.programIndicators || []).find(function (pi) {
+	                    return pi.id === item.dimension || pi.id === item.id;
+	                }));
 	
 	                dataElements.push(_extends({}, itemConfig, {
 	                    programStage: itemConfig.programStage ? itemConfig.programStage : {
