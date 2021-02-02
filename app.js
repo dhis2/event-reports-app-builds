@@ -17155,14 +17155,17 @@
 	            west_fill_accordion_dataset: 31,
 	            west_fill_accordion_period: 445,
 	            west_fill_accordion_organisationunit: 58,
+	            west_fill_accordion_group: 31,
 	            west_maxheight_accordion_indicator: 451,
 	            west_maxheight_accordion_dataset: 350,
-	            west_maxheight_accordion_period: 550,
+	            west_maxheight_accordion_period: 600,
 	            west_maxheight_accordion_organisationunit: 500,
-	            west_scrollbarheight_accordion_indicator: 300,
+	            west_maxheight_accordion_group: 340,
+	            west_scrollbarheight_accordion_indicator: 451,
 	            west_scrollbarheight_accordion_dataset: 250,
-	            west_scrollbarheight_accordion_period: 395,
-	            west_scrollbarheight_accordion_organisationunit: 350,
+	            west_scrollbarheight_accordion_period: 600,
+	            west_scrollbarheight_accordion_organisationunit: 500,
+	            west_scrollbarheight_accordion_group: 300,
 	            east_tbar_height: 31,
 	            east_gridcolumn_height: 30,
 	            form_label_width: 55,
@@ -28422,8 +28425,7 @@
 	            xtype: 'checkbox',
 	            relativePeriodId: 'LAST_12_MONTHS',
 	            boxLabel: i18n.last_12_months,
-	            index: 18,
-	            checked: true
+	            index: 18
 	        }, {
 	            xtype: 'checkbox',
 	            relativePeriodId: 'MONTHS_THIS_YEAR',
@@ -31244,6 +31246,10 @@
 	    var onCheckboxAdd = function onCheckboxAdd(cmp) {
 	        if (cmp.xtype === 'checkbox') {
 	            uiManager.reg(cmp, cmp.relativePeriodId, null, 'relativePeriod');
+	
+	            if (cmp.relativePeriodId === appManager.getRelativePeriod()) {
+	                cmp.setValue(true);
+	            }
 	        }
 	    };
 	
@@ -31406,8 +31412,7 @@
 	        }, {
 	            xtype: 'checkbox',
 	            relativePeriodId: 'LAST_12_MONTHS',
-	            boxLabel: i18n.last_12_months,
-	            checked: true
+	            boxLabel: i18n.last_12_months
 	        }, {
 	            xtype: 'checkbox',
 	            relativePeriodId: 'MONTHS_THIS_YEAR',
