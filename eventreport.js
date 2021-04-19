@@ -33321,6 +33321,7 @@
 	
 	    // private properties
 	    var _layouts = [];
+	    var _lastLayouts = [];
 	    var _isPending = false;
 	    var _isReady = false;
 	
@@ -33347,6 +33348,10 @@
 	        _runFn();
 	    };
 	
+	    t.reload = function () {
+	        t.load(_lastLayouts);
+	    };
+	
 	    t.getType = function () {
 	        return type;
 	    };
@@ -33365,6 +33370,8 @@
 	        var initializeFn = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initializeFn || _initializeFn;
 	
 	        if (_isReady) {
+	            _lastLayouts = [].concat(_toConsumableArray(_layouts));
+	
 	            while (_layouts.length) {
 	                renderFn(t, _layouts.shift());
 	            }
